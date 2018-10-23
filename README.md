@@ -1,14 +1,15 @@
-Here you can find Training/Testing Code for our anomaly Detection project which was published in Computer Vision and Pattern Recognition, CVPR 2018.
+We tested code (https://github.com/WaqasSultani/AnomalyDetectionCVPR2018) and edited code to run on PyQt5 in Demo_GUI.py file .
 
-The implementation is tested using:
+
+The implementation is tested using Python virtual enviroment:
 
 Keras version 1.1.0
 
 Theano 1.0.2
 
-Python 3
+Python 3.6
 
-Ubuntu 16.04
+Ubuntu 18.04
 
 
 We used C3D-v1.0 (https://github.com/facebook/C3D) with default settings as a feature extractor.
@@ -37,23 +38,3 @@ The project page and UCF-Crimes dataset can be found at: http://crcv.ucf.edu/pro
 
 The dataset can be also downloaded from the dropbox link given here:
 https://webpages.uncc.edu/cchen62/dataset.html
-
-
-If you find any bug, or have some questions, please contact Waqas Sultani: waqas5163@gmail.com
-
-
-Citation:
-
-@InProceedings{Sultani_2018_CVPR,
-
-author = {Sultani, Waqas and Chen, Chen and Shah, Mubarak},
-
-title = {Real-World Anomaly Detection in Surveillance Videos},
-
-booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-
-month = {June},
-
-year = {2018}
-
-}
