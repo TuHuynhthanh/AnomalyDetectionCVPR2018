@@ -8,7 +8,7 @@ The implementation is tested using Python virtual enviroment:
 - Python 3.6
 - Ubuntu 18.04
 
-Install requirements: ```python pip install -r requirement.txt```
+Install requirements: ```$ pip3 install -r requirement.txt```
 Using Theano backend, edit **keras.json** file in **~/.keras/keras.json** with contents:
 ```
 {
