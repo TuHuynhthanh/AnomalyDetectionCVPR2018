@@ -1,17 +1,23 @@
-We tested code (https://github.com/WaqasSultani/AnomalyDetectionCVPR2018) and edited code to run on PyQt5 in Demo_GUI.py file .
+We tested code on **(https://github.com/WaqasSultani/AnomalyDetectionCVPR2018)** and edited code to run on PyQt5 in Demo_GUI.py file .
 
 
 The implementation is tested using Python virtual enviroment:
 
-Keras version 1.1.0
+- Keras version 1.1.0 
+- Theano 1.0.2
+- Python 3.6
+- Ubuntu 18.04
 
-Theano 1.0.2
-
-Python 3.6
-
-Ubuntu 18.04
-
-
+Install requirements: ```python pip install -r requirement.txt```
+Using Theano backend, edit **keras.json** file in **~/.keras/keras.json** with contents:
+```
+{
+    "epsilon": 1e-07,
+    "backend": "theano",
+    "floatx": "float32",
+    "image_data_format": "channels_last"
+}
+```
 We used C3D-v1.0 (https://github.com/facebook/C3D) with default settings as a feature extractor.
  
 Training_AnomalyDetecor_public.py is to Train Anomaly Detection Model
