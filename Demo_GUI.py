@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 import cv2
 import os, sys
 import pickle
-from PyQt4 import QtGui   # If PyQt4 is not working in your case, you can try PyQt5, 
+from PyQt5 import QtGui,QtWidgets   # If PyQt4 is not working in your case, you can try PyQt5, 
 seed = 7
 numpy.random.seed(seed)
 
@@ -119,7 +119,7 @@ def load_dataset_One_Video_Features(Test_Video_Path):
 
     return  AllFeatures
 
-class PrettyWidget(QtGui.QWidget):
+class PrettyWidget(QtWidgets.QWidget):
 
     def __init__(self):
         super(PrettyWidget, self).__init__()
@@ -128,9 +128,9 @@ class PrettyWidget(QtGui.QWidget):
     def initUI(self):
         self.setGeometry(500, 100, 500, 500)
         self.setWindowTitle('Anomaly Detection')
-        btn = QtGui.QPushButton('ANOMALY DETECTION SYSTEM \n Please select video', self)
-
-        Model_dir = '/home/cvlab/Waqas_Data/Anomaly_Data/Pre_TrainedModels/L1L2/'
+        btn = QtWidgets.QPushButton('ANOMALY DETECTION SYSTEM \n Please select video', self)
+        
+        Model_dir = './'
         weights_path = Model_dir + 'weights_L1L2.mat'
         model_path = Model_dir + 'model.json'
         ########################################
@@ -155,7 +155,7 @@ class PrettyWidget(QtGui.QWidget):
 
 
     def SingleBrowse(self):
-        video_path = QtGui.QFileDialog.getOpenFileName(self,
+        video_path = QtWidgets.QFileDialog.getOpenFileName(self,
                                                         'Single File',
                                                         "/home/cvlab/Waqas_Data/Anomaly_Data/Normal_test_abn")
 
@@ -233,7 +233,7 @@ class PrettyWidget(QtGui.QWidget):
 
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     w = PrettyWidget()
     app.exec_()
 

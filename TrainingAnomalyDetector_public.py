@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, TimeDistributedDense ,LSTM,Reshape
+from keras.layers import Dense, Dropout, Activation, TimeDistributed ,LSTM,Reshape
 from keras.regularizers import l2
 from keras.optimizers import SGD,adam, Adagrad
 from scipy.io import loadmat, savemat
@@ -7,7 +7,7 @@ from keras.models import model_from_json
 import theano.tensor as T
 import theano
 import csv
-import ConfigParser
+import configparser
 import collections
 import time
 import csv
@@ -19,11 +19,11 @@ from os.path import isfile, join
 import numpy as np
 import numpy
 from datetime import datetime
-import path
+#import path
 from os.path import basename
 import glob
 import theano.sandbox
-theano.sandbox.cuda.use('gpu0')
+#theano.sandbox.cuda.use('gpu0')
 
 
 print("Create Model")
@@ -127,7 +127,7 @@ def load_dataset_Train_batch(AbnormalPath, NormalPath):
 
         count = -1;
         VideoFeatues = []
-        for feat in xrange(0, num_feat):
+        for feat in range(0, num_feat):
             feat_row1 = np.float32(words[feat * 4096:feat * 4096 + 4096])
             count = count + 1
             if count == 0:
@@ -164,7 +164,7 @@ def load_dataset_Train_batch(AbnormalPath, NormalPath):
 
         count = -1;
         VideoFeatues = []
-        for feat in xrange(0, num_feat):
+        for feat in range(0, num_feat):
 
 
             feat_row1 = np.float32(words[feat * 4096:feat * 4096 + 4096])
@@ -185,7 +185,7 @@ def load_dataset_Train_batch(AbnormalPath, NormalPath):
 
 
 
-    for iv in xrange(0, 32*batchsize):
+    for iv in range(0, 32*batchsize):
             if iv< th_loop1:
                 AllLabels[iv] = int(0)  # All instances of abnormal videos are labeled 0.  This will be used in custom_objective to keep track of normal and abnormal videos indexes.
             if iv > th_loop2:
@@ -212,7 +212,7 @@ def custom_objective(y_true, y_pred):
     sub_sum_l1=T.ones_like(y_true)  # For holding the concatenation of summation of scores in the bag.
     sub_l2 = T.ones_like(y_true) # For holding the concatenation of L2 of score in the bag.
 
-    for ii in xrange(0, nvid, 1):
+    for ii in range(0, nvid, 1):
         # For Labels
         mm = y_true[ii * n_seg:ii * n_seg + n_seg]
         sub_sum_labels = T.concatenate([sub_sum_labels, T.stack(T.sum(mm))])  # Just to keep track of abnormal and normal vidoes
@@ -263,7 +263,7 @@ def custom_objective(y_true, y_pred):
     Sub_Abn = sub_score[indx_abn] # Maximum Score for each of normal video
 
     z = T.ones_like(y_true)
-    for ii in xrange(0, n_Nor, 1):
+    for ii in range(0, n_Nor, 1):
         sub_z = T.maximum(1 - Sub_Abn + Sub_Nor[ii], 0)
         z = T.concatenate([z, T.stack(T.sum(sub_z))])
 
@@ -307,7 +307,7 @@ for it_num in range(num_iters):
     loss_graph = np.hstack((loss_graph, batch_loss))
     total_iterations += 1
     if total_iterations % 20 == 1:
-        print "These iteration=" + str(total_iterations) + ") took: " + str(datetime.now() - time_before) + ", with loss of " + str(batch_loss)
+        print("These iteration=" + str(total_iterations) + ") took: " + str(datetime.now() - time_before) + ", with loss of " + str(batch_loss))
         iteration_path = output_dir + 'Iterations_graph_' + str(total_iterations) + '.mat'
         savemat(iteration_path, dict(loss_graph=loss_graph))
     if total_iterations % 1000 == 0:  # Save the model at every 1000th iterations.
